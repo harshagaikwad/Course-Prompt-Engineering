@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Unit 4 Quiz</title>
+
+    <link rel="stylesheet"
+        href="../style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Prompt Engineering
+        </div>
+
+        <div class="nav-links">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="section">
+
+        <div class="section-heading">
+
+            <span>
+                UNIT 04 ASSESSMENT
+            </span>
+
+            <h2>
+                Prompt Engineering for Domain-Specific Tasks
+            </h2>
+
+        </div>
+
+
+        <div class="quiz-container">
+
+
+            <div class="question-card">
+
+                <h3>
+                    1. Prompt Engineering can assist with:
+                </h3>
+
+                <label>
+                    <input type="radio"
+                        name="q1"
+                        value="a">
+                    Code generation and debugging
+                </label>
+
+                <label>
+                    <input type="radio"
+                        name="q1"
+                        value="b">
+                    Only hardware design
+                </label>
+
+                <label>
+                    <input type="radio"
+                        name="q1"
+                        value="c">
+                    Only networking
+                </label>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>
+                    2. What is dialogue design?
+                </h3>
+
+                <label>
+                    <input type="radio"
+                        name="q2"
+                        value="a">
+                    Designing the interaction between a user and an AI system
+                </label>
+
+                <label>
+                    <input type="radio"
+                        name="q2"
+                        value="b">
+                    Designing computer hardware
+                </label>
+
+                <label>
+                    <input type="radio"
+                        name="q2"
+                        value="c">
+                    Designing a database
+                </label>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>
+                    3. Prompting in low-resource languages requires attention to:
+                </h3>
+
+                <label>
+                    <input type="radio"
+                        name="q3"
+                        value="a">
+                    Linguistic coverage and cultural context
+                </label>
+
+                <label>
+                    <input type="radio"
+                        name="q3"
+                        value="b">
+                    Monitor size
+                </label>
+
+                <label>
+                    <input type="radio"
+                        name="q3"
+                        value="c">
+                    Keyboard layout only
+                </label>
+
+            </div>
+
+
+            <button onclick="submitQuiz()"
+                class="primary-button">
+
+                Submit Quiz
+
+            </button>
+
+
+            <div id="result">
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        function submitQuiz() {
+
+            let score = 0;
+
+            if (
+                document.querySelector(
+                    'input[name="q1"]:checked'
+                )?.value === "a"
+            ) score++;
+
+            if (
+                document.querySelector(
+                    'input[name="q2"]:checked'
+                )?.value === "a"
+            ) score++;
+
+            if (
+                document.querySelector(
+                    'input[name="q3"]:checked'
+                )?.value === "a"
+            ) score++;
+
+            let percentage =
+                Math.round(
+                    (score / 3) * 100
+                );
+
+            document.getElementById(
+                "result"
+            ).innerHTML = `
+
+                <div class="result">
+
+                    <h2>
+                        Score: ${score}/3
+                    </h2>
+
+                    <p>
+                        Percentage: ${percentage}%
+                    </p>
+
+                </div>
+
+            `;
+
+            if (percentage >= 50) {
+
+                localStorage.setItem(
+                    "unit4Completed",
+                    "true"
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
