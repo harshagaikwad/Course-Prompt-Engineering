@@ -8,7 +8,9 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Unit 2 | Foundations of Prompt Design</title>
+    <title>
+        Unit 2 | Prompt Engineering
+    </title>
 
     <link rel="stylesheet"
         href="../style.css">
@@ -52,10 +54,9 @@
 
             <p>
 
-                Learn the fundamental types,
-                patterns, evaluation methods,
-                and debugging techniques used
-                in Prompt Engineering.
+                Learn the fundamental techniques
+                and patterns used to design effective
+                prompts for Large Language Models.
 
             </p>
 
@@ -74,19 +75,20 @@
                 <ul>
 
                     <li>
-                        Explain zero-shot, one-shot, and few-shot prompting.
+                        Explain zero-shot, one-shot,
+                        and few-shot prompting.
                     </li>
 
                     <li>
-                        Apply common prompt patterns.
+                        Apply different prompt patterns.
                     </li>
 
                     <li>
-                        Evaluate prompt quality.
+                        Design role-based and instructional prompts.
                     </li>
 
                     <li>
-                        Identify hallucination and safety problems.
+                        Evaluate prompt outputs.
                     </li>
 
                     <li>
@@ -104,14 +106,15 @@
                     Course Topics
                 </h2>
 
+
                 <h3>
                     1. Zero-Shot Prompting
                 </h3>
 
                 <p>
 
-                    Asking a model to perform a task
-                    without providing examples.
+                    Zero-shot prompting asks a language model
+                    to perform a task without providing examples.
 
                 </p>
 
@@ -122,8 +125,8 @@
 
                 <p>
 
-                    Providing one example to guide
-                    the expected response.
+                    One-shot prompting provides a single example
+                    to guide the model toward the desired output.
 
                 </p>
 
@@ -134,8 +137,8 @@
 
                 <p>
 
-                    Providing multiple examples
-                    to demonstrate a task pattern.
+                    Few-shot prompting provides multiple examples
+                    to demonstrate the expected task and output format.
 
                 </p>
 
@@ -146,20 +149,20 @@
 
                 <p>
 
-                    Instructional, delimiting,
-                    role-based, and Socratic prompts.
+                    Important prompt patterns include instructional,
+                    delimiting, role-based, and Socratic prompting.
 
                 </p>
 
 
                 <h3>
-                    5. Prompt Evaluation Metrics
+                    5. Prompt Evaluation
                 </h3>
 
                 <p>
 
-                    Accuracy, relevance, hallucination,
-                    consistency, and safety.
+                    Prompts can be evaluated using criteria such as
+                    accuracy, relevance, hallucination, and safety.
 
                 </p>
 
@@ -170,9 +173,9 @@
 
                 <p>
 
-                    Prompt debugging involves identifying
-                    ambiguity, missing context, poor instructions,
-                    and inappropriate output constraints.
+                    Prompt debugging involves identifying unclear
+                    instructions, missing context, ambiguity,
+                    and undesired model behavior.
 
                 </p>
 
@@ -187,14 +190,8 @@
 
                 <p>
 
-                    Add your Unit 2 PPT or PDF to:
+                    Access the Unit 2 learning material below.
 
-                </p>
-
-                <p>
-                    <b>
-                        materials/unit2/
-                    </b>
                 </p>
 
                 <a href="../materials/unit2/unit2.pdf"
@@ -214,6 +211,13 @@
                     Unit 2 Assessment
                 </h2>
 
+                <p>
+
+                    Complete the interactive quiz
+                    after studying this unit.
+
+                </p>
+
                 <a href="../quizzes/quiz2.html"
                     class="primary-button">
 
@@ -222,6 +226,35 @@
                 </a>
 
             </div>
+
+
+            <div class="lesson-card">
+
+                <h2>
+                    Unit Progress
+                </h2>
+
+                <p>
+
+                    After completing the unit material,
+                    mark this unit as completed.
+
+                </p>
+
+                <button
+                    class="primary-button"
+                    onclick="completeUnit(2)">
+
+                    Mark Unit 2 as Completed
+
+                </button>
+
+                <p id="unitProgress">
+
+                </p>
+
+            </div>
+
 
         </div>
 
@@ -235,6 +268,9 @@
         </p>
 
     </footer>
+
+
+    <script src="../script.js"></script>
 
 </body>
 
