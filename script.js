@@ -2,8 +2,7 @@
 // GOOGLE APPS SCRIPT WEB APP URL
 // ==========================================
 
-const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbz476e53gAfbDCDPRzi68iIl6CdlM_9GV6_SrwY7fHCRdMNlNS23jrVaSpGBXh84Iah/exec";
+const GOOGLE_SCRIPT_URL ="https://script.google.com/macros/s/AKfycbz476e53gAfbDCDPRzi68iIl6CdlM_9GV6_SrwY7fHCRdMNlNS23jrVaSpGBXh84Iah/exec";
 
 // ==========================================
 // GLOBAL VARIABLES
