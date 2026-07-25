@@ -8,7 +8,9 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Unit 3 | Advanced Prompting Techniques</title>
+    <title>
+        Unit 3 | Prompt Engineering
+    </title>
 
     <link rel="stylesheet"
         href="../style.css">
@@ -52,9 +54,9 @@
 
             <p>
 
-                Explore advanced reasoning,
-                agentic prompting, multimodal prompting,
-                and programming APIs.
+                Explore advanced techniques for reasoning,
+                planning, tool use, multimodal interaction,
+                and API-based prompt engineering.
 
             </p>
 
@@ -73,11 +75,15 @@
                 <ul>
 
                     <li>
-                        Explain Chain-of-Thought Prompting.
+                        Explain advanced prompting techniques.
                     </li>
 
                     <li>
-                        Apply Self-Ask Prompting.
+                        Understand Chain-of-Thought prompting.
+                    </li>
+
+                    <li>
+                        Apply Self-Ask prompting.
                     </li>
 
                     <li>
@@ -89,7 +95,8 @@
                     </li>
 
                     <li>
-                        Create prompt templates using APIs.
+                        Use prompt templates with APIs.
+
                     </li>
 
                 </ul>
@@ -103,14 +110,16 @@
                     Course Topics
                 </h2>
 
+
                 <h3>
                     1. Chain-of-Thought Prompting
                 </h3>
 
                 <p>
 
-                    A prompting approach that encourages
-                    structured reasoning for complex tasks.
+                    Chain-of-Thought prompting encourages
+                    a model to approach complex problems
+                    through intermediate reasoning steps.
 
                 </p>
 
@@ -121,8 +130,9 @@
 
                 <p>
 
-                    The model decomposes a complex question
-                    into smaller subquestions.
+                    Self-Ask prompting allows a model to
+                    break a complex question into smaller
+                    sub-questions.
 
                 </p>
 
@@ -133,8 +143,9 @@
 
                 <p>
 
-                    ReAct combines reasoning and action
-                    to support tool-based problem solving.
+                    ReAct combines reasoning and action.
+                    It enables systems to reason about a task
+                    and interact with external tools.
 
                 </p>
 
@@ -145,21 +156,33 @@
 
                 <p>
 
-                    Multimodal prompting combines text
-                    with images and other input modalities.
+                    Multimodal prompting combines different
+                    types of input such as text and images.
 
                 </p>
 
 
                 <h3>
-                    5. Prompt Templates Using Python APIs
+                    5. Prompt Templates
                 </h3>
 
                 <p>
 
-                    Prompt templates can be created using
-                    programming frameworks such as LangChain
-                    and SDKs such as the OpenAI SDK.
+                    Prompt templates allow developers to create
+                    reusable prompts with dynamic inputs.
+
+                </p>
+
+
+                <h3>
+                    6. Python APIs
+                </h3>
+
+                <p>
+
+                    Prompt Engineering can be implemented
+                    using Python APIs, LangChain, and
+                    OpenAI SDK-based applications.
 
                 </p>
 
@@ -173,13 +196,9 @@
                 </h2>
 
                 <p>
-                    Add your Unit 3 material to:
-                </p>
 
-                <p>
-                    <b>
-                        materials/unit3/
-                    </b>
+                    Access the Unit 3 learning material below.
+
                 </p>
 
                 <a href="../materials/unit3/unit3.pdf"
@@ -199,6 +218,13 @@
                     Unit 3 Assessment
                 </h2>
 
+                <p>
+
+                    Complete the interactive quiz
+                    after studying this unit.
+
+                </p>
+
                 <a href="../quizzes/quiz3.html"
                     class="primary-button">
 
@@ -207,6 +233,35 @@
                 </a>
 
             </div>
+
+
+            <div class="lesson-card">
+
+                <h2>
+                    Unit Progress
+                </h2>
+
+                <p>
+
+                    After completing the unit material,
+                    mark this unit as completed.
+
+                </p>
+
+                <button
+                    class="primary-button"
+                    onclick="completeUnit(3)">
+
+                    Mark Unit 3 as Completed
+
+                </button>
+
+                <p id="unitProgress">
+
+                </p>
+
+            </div>
+
 
         </div>
 
@@ -220,6 +275,9 @@
         </p>
 
     </footer>
+
+
+    <script src="../script.js"></script>
 
 </body>
 
