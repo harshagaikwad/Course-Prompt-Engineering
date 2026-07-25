@@ -1,155 +1,306 @@
-// =====================================
-// GOOGLE APPS SCRIPT URL
-// =====================================
+// ==========================================
+// GOOGLE APPS SCRIPT WEB APP URL
+// ==========================================
 
 const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzG-4cVnCpbekmjzf80LYVyRdK4D7XAzduOE6-2ySZriSF_7QCU4G0rKLNTUNwSO4b7/exec";
+    " https://script.google.com/macros/s/AKfycbz476e53gAfbDCDPRzi68iIl6CdlM_9GV6_SrwY7fHCRdMNlNS23jrVaSpGBXh84Iah/exec";
 
 
-// =====================================
-// GET STUDENT EMAIL
-// =====================================
+// ==========================================
+// GLOBAL VARIABLES
+// ==========================================
 
-function getStudentEmail() {
-
-    return localStorage.getItem(
-        "studentEmail"
-    );
-
-}
+let selectedCoursePage = "";
 
 
-// =====================================
-// SAVE EMAIL LOCALLY
-// =====================================
+// ==========================================
+// CHECK WHETHER STUDENT IS REGISTERED
+// ==========================================
 
-function saveStudentEmail(
-    email
-) {
+function isStudentRegistered() {
 
-    localStorage.setItem(
-        "studentEmail",
-        email
-    );
-
-}
-
-
-// =====================================
-// SEND DATA TO GOOGLE SHEETS
-// =====================================
-
-async function sendToGoogleSheets(
-    data
-) {
-
-    try {
-
-        const response =
-            await fetch(
-                GOOGLE_SCRIPT_URL,
-                {
-
-                    method: "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
-
-                    },
-
-                    body:
-                        JSON.stringify(data)
-
-                }
-            );
-
-
-        return await response.json();
-
-
-    } catch (error) {
-
-        console.error(
-            "Error:",
-            error
+    const email =
+        localStorage.getItem(
+            "studentEmail"
         );
 
 
-        return {
-
-            success: false,
-
-            message:
-                "Connection error"
-
-        };
-
-    }
+    return (
+        email !== null
+        &&
+        email.trim() !== ""
+    );
 
 }
 
 
-// =====================================
-// REGISTER STUDENT
-// =====================================
+// ==========================================
+// OPEN REGISTRATION MODAL
+// ==========================================
 
-async function registerStudent(
-    email
-) {
+function startCourse(page) {
 
-    const result =
-        await sendToGoogleSheets({
-
-            action:
-                "register",
-
-            email:
-                email
-
-        });
+    selectedCoursePage =
+        page;
 
 
     if (
-        result.success
+        isStudentRegistered()
     ) {
 
-        saveStudentEmail(
-            email
-        );
+        window.location.href =
+            page;
 
-        return true;
+        return;
 
     }
 
 
-    alert(
-        result.message
-    );
+    const modal =
+        document
+        .getElementById(
+            "registrationModal"
+        );
 
 
-    return false;
+    if (modal) {
+
+        modal.style.display =
+            "flex";
+
+    }
 
 }
 
 
-// =====================================
-// COMPLETE UNIT
-// =====================================
+// ==========================================
+// CLOSE REGISTRATION MODAL
+// ==========================================
 
-async function completeUnit(
+function closeRegistration() {
+
+    const modal =
+        document
+        .getElementById(
+            "registrationModal"
+        );
+
+
+    if (modal) {
+
+        modal.style.display =
+            "none";
+
+    }
+
+}
+
+
+// ==========================================
+// REGISTER STUDENT
+// ==========================================
+
+function registerStudent(
+    email,
+    page
+) {
+
+
+    const message =
+        document
+        .getElementById(
+            "registrationMessage"
+        );
+
+
+    message.innerText =
+        "Registering your email...";
+
+
+    const formData =
+        new URLSearchParams();
+
+
+    formData.append(
+        "email",
+        email
+    );
+
+
+    fetch(
+
+        GOOGLE_SCRIPT_URL,
+
+        {
+
+            method:
+                "POST",
+
+            body:
+                formData
+
+        }
+
+    )
+
+    .then(
+
+        response =>
+            response.text()
+
+    )
+
+    .then(
+
+        result => {
+
+
+            localStorage.setItem(
+
+                "studentEmail",
+
+                email
+
+            );
+
+
+            message.innerText =
+                "Registration successful";
+
+
+            setTimeout(
+
+                function () {
+
+                    window.location.href =
+                        page;
+
+                },
+
+                500
+
+            );
+
+        }
+
+    )
+
+    .catch(
+
+        function (error) {
+
+
+            console.error(
+                error
+            );
+
+
+            message.innerText =
+                "Registration failed. Please try again.";
+
+        }
+
+    );
+
+}
+
+
+// ==========================================
+// REGISTRATION FORM
+// ==========================================
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function () {
+
+
+        const form =
+            document
+            .getElementById(
+                "registrationForm"
+            );
+
+
+        if (!form) {
+
+            return;
+
+        }
+
+
+        form.addEventListener(
+
+            "submit",
+
+            function (event) {
+
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                    .getElementById(
+                        "studentEmail"
+                    )
+                    .value
+                    .trim();
+
+
+                if (
+                    email === ""
+                ) {
+
+                    return;
+
+                }
+
+
+                const page =
+                    selectedCoursePage;
+
+
+                registerStudent(
+
+                    email,
+
+                    page
+
+                );
+
+            }
+
+        );
+
+    }
+
+);
+
+
+// ==========================================
+// COMPLETE UNIT
+// ==========================================
+
+function completeUnit(
     unitNumber
 ) {
 
+
     const email =
-        getStudentEmail();
+        localStorage.getItem(
+            "studentEmail"
+        );
 
 
-    if (!email) {
+    if (
+        !email
+    ) {
+
 
         alert(
-            "Please register with your email first."
+            "Please register your email before continuing."
         );
 
 
@@ -162,189 +313,106 @@ async function completeUnit(
     }
 
 
-    const result =
-        await sendToGoogleSheets({
-
-            action:
-                "complete_unit",
-
-            email:
-                email,
-
-            unit:
-                unitNumber
-
-        });
+    const formData =
+        new URLSearchParams();
 
 
-    if (
-        result.success
-    ) {
-
-        localStorage.setItem(
-
-            "unit" +
-            unitNumber +
-            "Completed",
-
-            "true"
-
-        );
+    formData.append(
+        "email",
+        email
+    );
 
 
-        const progressElement =
-            document.getElementById(
-                "unitProgress"
-            );
+    formData.append(
+        "unit",
+        unitNumber
+    );
 
 
-        if (
-            progressElement
-        ) {
+    formData.append(
+        "status",
+        "Completed"
+    );
 
-            progressElement.innerText =
-                "Overall Progress: "
-                +
-                result.progress;
+
+    fetch(
+
+        GOOGLE_SCRIPT_URL,
+
+        {
+
+            method:
+                "POST",
+
+            body:
+                formData
 
         }
 
+    )
 
-        alert(
-            "Unit completed successfully!"
-        );
+    .then(
 
-    }
+        response =>
+            response.text()
 
-}
+    )
 
+    .then(
 
-// =====================================
-// SAVE QUIZ SCORE
-// =====================================
-
-async function saveQuizScore(
-    quizNumber,
-    score,
-    total
-) {
-
-    const email =
-        getStudentEmail();
+        result => {
 
 
-    if (!email) {
-
-        alert(
-            "Please register with your email first."
-        );
-
-
-        return;
-
-    }
+            const progress =
+                document
+                .getElementById(
+                    "unitProgress"
+                );
 
 
-    const scoreText =
-        score
-        +
-        "/"
-        +
-        total;
+            if (
+                progress
+            ) {
+
+                progress.innerText =
+                    "✓ Unit "
+                    +
+                    unitNumber
+                    +
+                    " completed successfully.";
+
+            }
 
 
-    const result =
-        await sendToGoogleSheets({
-
-            action:
-                "quiz_score",
-
-            email:
-                email,
-
-            quiz:
-                quizNumber,
-
-            score:
-                scoreText
-
-        });
+            alert(
+                "Unit "
+                +
+                unitNumber
+                +
+                " marked as completed."
+            );
 
 
-    if (
-        result.success
-    ) {
+        }
 
-        alert(
-            "Quiz score saved: "
-            +
-            scoreText
-        );
+    )
 
-    }
+    .catch(
 
-}
+        function (error) {
 
 
-// =====================================
-// DARK MODE
-// =====================================
-
-function toggleTheme() {
-
-    document.body
-        .classList
-        .toggle(
-            "dark-mode"
-        );
+            console.error(
+                error
+            );
 
 
-    const button =
-        document.getElementById(
-            "themeButton"
-        );
+            alert(
+                "Unable to save progress."
+            );
 
+        }
 
-    if (
-        document.body
-            .classList
-            .contains(
-                "dark-mode"
-            )
-    ) {
-
-        button.innerHTML =
-            "☀️";
-
-    } else {
-
-        button.innerHTML =
-            "🌙";
-
-    }
-
-}
-
-
-// =====================================
-// CHECK STUDENT REGISTRATION
-// =====================================
-
-function checkStudentRegistration() {
-
-    const email =
-        getStudentEmail();
-
-
-    if (
-        !email
-    ) {
-
-        return false;
-
-    }
-
-
-    return true;
+    );
 
 }
