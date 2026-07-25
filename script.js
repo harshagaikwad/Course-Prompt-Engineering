@@ -1,28 +1,217 @@
-function toggleTheme() {
+// =====================================
+// GOOGLE APPS SCRIPT URL
+// =====================================
 
-    document.body.classList.toggle("dark-mode");
+const GOOGLE_SCRIPT_URL =
+    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
-    const button =
-        document.getElementById("themeButton");
 
-    if (
-        document.body.classList.contains("dark-mode")
-    ) {
+// =====================================
+// GET STUDENT EMAIL
+// =====================================
 
-        button.innerHTML = "☀️";
+function getStudentEmail() {
 
-        localStorage.setItem(
-            "theme",
-            "dark"
+    return localStorage.getItem(
+        "studentEmail"
+    );
+
+}
+
+
+// =====================================
+// SAVE EMAIL LOCALLY
+// =====================================
+
+function saveStudentEmail(
+    email
+) {
+
+    localStorage.setItem(
+        "studentEmail",
+        email
+    );
+
+}
+
+
+// =====================================
+// SEND DATA TO GOOGLE SHEETS
+// =====================================
+
+async function sendToGoogleSheets(
+    data
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                GOOGLE_SCRIPT_URL,
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+
+                    },
+
+                    body:
+                        JSON.stringify(data)
+
+                }
+            );
+
+
+        return await response.json();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error:",
+            error
         );
 
-    } else {
 
-        button.innerHTML = "🌙";
+        return {
+
+            success: false,
+
+            message:
+                "Connection error"
+
+        };
+
+    }
+
+}
+
+
+// =====================================
+// REGISTER STUDENT
+// =====================================
+
+async function registerStudent(
+    email
+) {
+
+    const result =
+        await sendToGoogleSheets({
+
+            action:
+                "register",
+
+            email:
+                email
+
+        });
+
+
+    if (
+        result.success
+    ) {
+
+        saveStudentEmail(
+            email
+        );
+
+        return true;
+
+    }
+
+
+    alert(
+        result.message
+    );
+
+
+    return false;
+
+}
+
+
+// =====================================
+// COMPLETE UNIT
+// =====================================
+
+async function completeUnit(
+    unitNumber
+) {
+
+    const email =
+        getStudentEmail();
+
+
+    if (!email) {
+
+        alert(
+            "Please register with your email first."
+        );
+
+
+        window.location.href =
+            "../index.html";
+
+
+        return;
+
+    }
+
+
+    const result =
+        await sendToGoogleSheets({
+
+            action:
+                "complete_unit",
+
+            email:
+                email,
+
+            unit:
+                unitNumber
+
+        });
+
+
+    if (
+        result.success
+    ) {
 
         localStorage.setItem(
-            "theme",
-            "light"
+
+            "unit" +
+            unitNumber +
+            "Completed",
+
+            "true"
+
+        );
+
+
+        const progressElement =
+            document.getElementById(
+                "unitProgress"
+            );
+
+
+        if (
+            progressElement
+        ) {
+
+            progressElement.innerText =
+                "Overall Progress: "
+                +
+                result.progress;
+
+        }
+
+
+        alert(
+            "Unit completed successfully!"
         );
 
     }
@@ -30,86 +219,132 @@ function toggleTheme() {
 }
 
 
-window.addEventListener(
+// =====================================
+// SAVE QUIZ SCORE
+// =====================================
 
-    "DOMContentLoaded",
+async function saveQuizScore(
+    quizNumber,
+    score,
+    total
+) {
 
-    function () {
+    const email =
+        getStudentEmail();
 
-        const savedTheme =
-            localStorage.getItem("theme");
 
-        if (
-            savedTheme === "dark"
-        ) {
+    if (!email) {
 
-            document.body.classList.add(
-                "dark-mode"
-            );
+        alert(
+            "Please register with your email first."
+        );
 
-            document.getElementById(
-                "themeButton"
-            ).innerHTML = "☀️";
 
-        }
-
-        updateProgress();
+        return;
 
     }
 
-);
+
+    const scoreText =
+        score
+        +
+        "/"
+        +
+        total;
 
 
-function updateProgress() {
+    const result =
+        await sendToGoogleSheets({
 
-    for (
-        let unit = 1;
-        unit <= 5;
-        unit++
+            action:
+                "quiz_score",
+
+            email:
+                email,
+
+            quiz:
+                quizNumber,
+
+            score:
+                scoreText
+
+        });
+
+
+    if (
+        result.success
     ) {
 
-        const completed =
-            localStorage.getItem(
-                "unit" + unit + "Completed"
-            );
-
-        const progress =
-            document.getElementById(
-                "progress" + unit
-            );
-
-        const progressText =
-            document.getElementById(
-                "progressText" + unit
-            );
-
-        if (
-            progress &&
-            progressText
-        ) {
-
-            if (
-                completed === "true"
-            ) {
-
-                progress.style.width =
-                    "100%";
-
-                progressText.innerHTML =
-                    "Completed ✓";
-
-            } else {
-
-                progress.style.width =
-                    "0%";
-
-                progressText.innerHTML =
-                    "Not Started";
-
-            }
-
-        }
+        alert(
+            "Quiz score saved: "
+            +
+            scoreText
+        );
 
     }
+
+}
+
+
+// =====================================
+// DARK MODE
+// =====================================
+
+function toggleTheme() {
+
+    document.body
+        .classList
+        .toggle(
+            "dark-mode"
+        );
+
+
+    const button =
+        document.getElementById(
+            "themeButton"
+        );
+
+
+    if (
+        document.body
+            .classList
+            .contains(
+                "dark-mode"
+            )
+    ) {
+
+        button.innerHTML =
+            "☀️";
+
+    } else {
+
+        button.innerHTML =
+            "🌙";
+
+    }
+
+}
+
+
+// =====================================
+// CHECK STUDENT REGISTRATION
+// =====================================
+
+function checkStudentRegistration() {
+
+    const email =
+        getStudentEmail();
+
+
+    if (
+        !email
+    ) {
+
+        return false;
+
+    }
+
+
+    return true;
 
 }
