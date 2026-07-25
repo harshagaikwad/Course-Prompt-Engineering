@@ -8,7 +8,9 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Prompt Engineering Course</title>
+    <title>
+        Prompt Engineering Course
+    </title>
 
     <link rel="stylesheet"
         href="style.css">
@@ -17,7 +19,7 @@
 
 <body>
 
-    <!-- Navigation -->
+    <!-- NAVIGATION -->
 
     <nav class="navbar">
 
@@ -26,6 +28,7 @@
             Prompt Engineering
 
         </div>
+
 
         <div class="nav-links">
 
@@ -43,6 +46,7 @@
 
         </div>
 
+
         <button id="themeButton"
             onclick="toggleTheme()">
 
@@ -53,7 +57,7 @@
     </nav>
 
 
-    <!-- Hero Section -->
+    <!-- HERO -->
 
     <section id="home"
         class="hero">
@@ -66,11 +70,13 @@
 
             </span>
 
+
             <h1>
 
                 Prompt Engineering
 
             </h1>
+
 
             <p>
 
@@ -80,12 +86,15 @@
 
             </p>
 
-            <a href="#units"
-                class="primary-button">
+
+            <button
+                class="primary-button"
+                onclick="openRegistration()">
 
                 Start Learning
 
-            </a>
+            </button>
+
 
             <a href="#units"
                 class="secondary-button">
@@ -99,18 +108,16 @@
     </section>
 
 
-    <!-- Course Overview -->
+    <!-- COURSE OVERVIEW -->
 
-    <section id="course"
-        class="section">
+    <section class="section">
 
         <div class="section-heading">
 
             <span>
-
                 COURSE OVERVIEW
-
             </span>
+
 
             <h2>
 
@@ -118,12 +125,12 @@
 
             </h2>
 
+
             <p>
 
-                This course introduces the principles,
-                techniques, applications, safety concerns,
-                bias, evaluation, and ethical aspects
-                of Prompt Engineering.
+                Learn prompt design, advanced prompting,
+                domain-specific applications, safety,
+                bias, ethics, evaluation, and RAG.
 
             </p>
 
@@ -188,73 +195,7 @@
     </section>
 
 
-    <!-- Features -->
-
-    <section class="features">
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                📚
-            </div>
-
-            <h3>
-                Learning Material
-            </h3>
-
-            <p>
-
-                Access lecture presentations,
-                notes, and additional learning resources.
-
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                📝
-            </div>
-
-            <h3>
-                Interactive Quizzes
-            </h3>
-
-            <p>
-
-                Test your understanding through
-                unit-wise interactive assessments.
-
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                💻
-            </div>
-
-            <h3>
-                Practical Learning
-            </h3>
-
-            <p>
-
-                Practice prompt design using
-                real-world examples and applications.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- Units -->
+    <!-- UNITS -->
 
     <section id="units"
         class="section units">
@@ -265,16 +206,12 @@
                 COURSE CONTENT
             </span>
 
+
             <h2>
+
                 Explore the Course Units
+
             </h2>
-
-            <p>
-
-                Complete each unit, study the learning
-                material, and take the unit quiz.
-
-            </p>
 
         </div>
 
@@ -282,13 +219,12 @@
         <div class="unit-container">
 
 
-            <!-- Unit 1 -->
-
             <div class="unit-card">
 
                 <div class="unit-number">
                     01
                 </div>
+
 
                 <div class="unit-content">
 
@@ -298,38 +234,26 @@
 
                     </h3>
 
+
                     <p>
 
-                        Evolution of NLP to Large Language Models,
-                        tokens, embeddings, context windows,
+                        Evolution of NLP to LLMs,
+                        tokens, embeddings,
+                        context windows,
                         GPT, Claude, PaLM, Mistral,
-                        applications, and prompting versus fine-tuning.
+                        prompting and fine-tuning.
 
                     </p>
 
-                    <div class="progress-container">
 
-                        <div id="progress1"
-                            class="progress-bar">
-
-                        </div>
-
-                    </div>
-
-                    <small id="progressText1">
-
-                        Not Started
-
-                    </small>
-
-                    <br><br>
-
-                    <a href="units/unit1.html"
-                        class="unit-button">
+                    <button
+                        class="unit-button"
+                        onclick="startUnit(1)">
 
                         View Unit
 
-                    </a>
+                    </button>
+
 
                     <a href="quizzes/quiz1.html"
                         class="quiz-button">
@@ -343,13 +267,12 @@
             </div>
 
 
-            <!-- Unit 2 -->
-
             <div class="unit-card">
 
                 <div class="unit-number">
                     02
                 </div>
+
 
                 <div class="unit-content">
 
@@ -359,37 +282,26 @@
 
                     </h3>
 
+
                     <p>
 
-                        Zero-shot, one-shot, few-shot prompting,
-                        prompt patterns, evaluation metrics,
-                        and prompt debugging techniques.
+                        Zero-shot, one-shot,
+                        few-shot prompting,
+                        prompt patterns,
+                        evaluation metrics,
+                        and debugging.
 
                     </p>
 
-                    <div class="progress-container">
 
-                        <div id="progress2"
-                            class="progress-bar">
-
-                        </div>
-
-                    </div>
-
-                    <small id="progressText2">
-
-                        Not Started
-
-                    </small>
-
-                    <br><br>
-
-                    <a href="units/unit2.html"
-                        class="unit-button">
+                    <button
+                        class="unit-button"
+                        onclick="startUnit(2)">
 
                         View Unit
 
-                    </a>
+                    </button>
+
 
                     <a href="quizzes/quiz2.html"
                         class="quiz-button">
@@ -403,13 +315,12 @@
             </div>
 
 
-            <!-- Unit 3 -->
-
             <div class="unit-card">
 
                 <div class="unit-number">
                     03
                 </div>
+
 
                 <div class="unit-content">
 
@@ -419,37 +330,25 @@
 
                     </h3>
 
+
                     <p>
 
-                        Chain-of-Thought, Self-Ask, ReAct,
-                        multimodal prompting, prompt templates,
-                        LangChain, and OpenAI SDK.
+                        Chain-of-Thought,
+                        Self-Ask, ReAct,
+                        multimodal prompting,
+                        LangChain, and APIs.
 
                     </p>
 
-                    <div class="progress-container">
 
-                        <div id="progress3"
-                            class="progress-bar">
-
-                        </div>
-
-                    </div>
-
-                    <small id="progressText3">
-
-                        Not Started
-
-                    </small>
-
-                    <br><br>
-
-                    <a href="units/unit3.html"
-                        class="unit-button">
+                    <button
+                        class="unit-button"
+                        onclick="startUnit(3)">
 
                         View Unit
 
-                    </a>
+                    </button>
+
 
                     <a href="quizzes/quiz3.html"
                         class="quiz-button">
@@ -463,13 +362,12 @@
             </div>
 
 
-            <!-- Unit 4 -->
-
             <div class="unit-card">
 
                 <div class="unit-number">
                     04
                 </div>
+
 
                 <div class="unit-content">
 
@@ -479,37 +377,24 @@
 
                     </h3>
 
+
                     <p>
 
-                        Coding assistance, conversational agents,
+                        Coding, conversational agents,
                         legal, educational, medical prompts,
                         data analysis, and low-resource languages.
 
                     </p>
 
-                    <div class="progress-container">
 
-                        <div id="progress4"
-                            class="progress-bar">
-
-                        </div>
-
-                    </div>
-
-                    <small id="progressText4">
-
-                        Not Started
-
-                    </small>
-
-                    <br><br>
-
-                    <a href="units/unit4.html"
-                        class="unit-button">
+                    <button
+                        class="unit-button"
+                        onclick="startUnit(4)">
 
                         View Unit
 
-                    </a>
+                    </button>
+
 
                     <a href="quizzes/quiz4.html"
                         class="quiz-button">
@@ -523,13 +408,12 @@
             </div>
 
 
-            <!-- Unit 5 -->
-
             <div class="unit-card">
 
                 <div class="unit-number">
                     05
                 </div>
+
 
                 <div class="unit-content">
 
@@ -539,37 +423,25 @@
 
                     </h3>
 
+
                     <p>
 
                         Bias, toxicity, misinformation,
-                        jailbreaks, safety, evaluation frameworks,
-                        function calling, tool use, and RAG.
+                        jailbreaks, safety,
+                        evaluation, function calling,
+                        tool use, and RAG.
 
                     </p>
 
-                    <div class="progress-container">
 
-                        <div id="progress5"
-                            class="progress-bar">
-
-                        </div>
-
-                    </div>
-
-                    <small id="progressText5">
-
-                        Not Started
-
-                    </small>
-
-                    <br><br>
-
-                    <a href="units/unit5.html"
-                        class="unit-button">
+                    <button
+                        class="unit-button"
+                        onclick="startUnit(5)">
 
                         View Unit
 
-                    </a>
+                    </button>
+
 
                     <a href="quizzes/quiz5.html"
                         class="quiz-button">
@@ -587,94 +459,7 @@
     </section>
 
 
-    <!-- Learning Process -->
-
-    <section class="learning">
-
-        <div class="section-heading">
-
-            <span>
-
-                LEARNING PROCESS
-
-            </span>
-
-            <h2>
-
-                Learn. Practice. Assess.
-
-            </h2>
-
-        </div>
-
-
-        <div class="steps">
-
-            <div>
-
-                <div class="step-number">
-                    1
-                </div>
-
-                <h3>
-                    Learn
-                </h3>
-
-                <p>
-
-                    Study the course content
-                    and lecture material.
-
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <div class="step-number">
-                    2
-                </div>
-
-                <h3>
-                    Practice
-                </h3>
-
-                <p>
-
-                    Experiment with prompts
-                    and solve practical activities.
-
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <div class="step-number">
-                    3
-                </div>
-
-                <h3>
-                    Assess
-                </h3>
-
-                <p>
-
-                    Complete quizzes and
-                    evaluate your understanding.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- Instructor -->
+    <!-- ABOUT -->
 
     <section id="about"
         class="about">
@@ -687,11 +472,13 @@
 
             </span>
 
+
             <h2>
 
                 Dr. Harsha R. Gaikwad
 
             </h2>
+
 
             <p>
 
@@ -701,21 +488,65 @@
 
             </p>
 
-            <p>
-
-                The course combines theoretical concepts,
-                practical examples, programming APIs,
-                interactive quizzes, and domain-specific
-                applications.
-
-            </p>
-
         </div>
 
     </section>
 
 
-    <!-- Footer -->
+    <!-- REGISTRATION POPUP -->
+
+    <div id="registrationModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <span
+                class="close"
+                onclick="closeRegistration()">
+
+                &times;
+
+            </span>
+
+
+            <h2>
+
+                Start Your Course
+
+            </h2>
+
+
+            <p>
+
+                Enter your email address to register
+                and track your course progress.
+
+            </p>
+
+
+            <input
+                type="email"
+                id="studentEmail"
+                placeholder="Enter your email address">
+
+
+            <button
+                class="primary-button"
+                onclick="registerAndStart()">
+
+                Register & Start Learning
+
+            </button>
+
+
+            <p id="registrationMessage">
+
+            </p>
+
+        </div>
+
+    </div>
+
 
     <footer>
 
@@ -725,16 +556,17 @@
 
         </h3>
 
+
         <p>
 
             Learn. Practice. Create with AI.
 
         </p>
 
-        <p class="copyright">
 
-            © 2026 Dr. Harsha R. Gaikwad.
-            All Rights Reserved.
+        <p>
+
+            © 2026 Dr. Harsha R. Gaikwad
 
         </p>
 
@@ -742,6 +574,167 @@
 
 
     <script src="script.js"></script>
+
+
+    <script>
+
+        function openRegistration() {
+
+            const existingEmail =
+                getStudentEmail();
+
+
+            if (
+                existingEmail
+            ) {
+
+                window.location.href =
+                    "units/unit1.html";
+
+                return;
+
+            }
+
+
+            document
+                .getElementById(
+                    "registrationModal"
+                )
+                .style
+                .display =
+                "flex";
+
+        }
+
+
+        function closeRegistration() {
+
+            document
+                .getElementById(
+                    "registrationModal"
+                )
+                .style
+                .display =
+                "none";
+
+        }
+
+
+        async function registerAndStart() {
+
+            const email =
+                document
+                    .getElementById(
+                        "studentEmail"
+                    )
+                    .value
+                    .trim();
+
+
+            if (
+                !email
+            ) {
+
+                alert(
+                    "Please enter your email address."
+                );
+
+                return;
+
+            }
+
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (
+                !emailPattern.test(
+                    email
+                )
+            ) {
+
+                alert(
+                    "Please enter a valid email address."
+                );
+
+                return;
+
+            }
+
+
+            const message =
+                document
+                    .getElementById(
+                        "registrationMessage"
+                    );
+
+
+            message.innerText =
+                "Registering...";
+
+
+            const success =
+                await registerStudent(
+                    email
+                );
+
+
+            if (
+                success
+            ) {
+
+                message.innerText =
+                    "Registration successful!";
+
+
+                setTimeout(
+
+                    function() {
+
+                        window.location.href =
+                            "units/unit1.html";
+
+                    },
+
+                    1000
+
+                );
+
+            }
+
+        }
+
+
+        function startUnit(
+            unitNumber
+        ) {
+
+            const email =
+                getStudentEmail();
+
+
+            if (
+                !email
+            ) {
+
+                openRegistration();
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "units/unit"
+                +
+                unitNumber
+                +
+                ".html";
+
+        }
+
+    </script>
 
 </body>
 
