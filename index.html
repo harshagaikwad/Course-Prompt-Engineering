@@ -21,11 +21,8 @@
 <body>
 
 
-    <!-- =========================
-         NAVIGATION BAR
-    ========================== -->
-
     <nav class="navbar">
+
 
         <div class="logo">
 
@@ -35,6 +32,7 @@
 
 
         <div class="nav-links">
+
 
             <a href="#home">
 
@@ -63,15 +61,13 @@
 
             </a>
 
+
         </div>
+
 
     </nav>
 
 
-
-    <!-- =========================
-         HERO SECTION
-    ========================== -->
 
     <section
         class="hero"
@@ -132,6 +128,7 @@
 
                 </a>
 
+
             </div>
 
 
@@ -141,10 +138,6 @@
     </section>
 
 
-
-    <!-- =========================
-         COURSE STATS
-    ========================== -->
 
     <section
         class="stats">
@@ -238,10 +231,6 @@
 
 
 
-    <!-- =========================
-         COURSE OVERVIEW
-    ========================== -->
-
     <main
         class="section"
         id="about">
@@ -285,10 +274,6 @@
 
 
 
-    <!-- =========================
-         COURSE UNITS
-    ========================== -->
-
     <section
         class="section"
         id="units">
@@ -329,9 +314,6 @@
             class="units-grid">
 
 
-
-            <!-- UNIT 1 -->
-
             <div
                 class="unit-card">
 
@@ -362,8 +344,9 @@
 
 
                 <a
-                    href="units/unit1.html"
-                    class="unit-button">
+                    href="#"
+                    class="unit-button"
+                    onclick="startCourse('units/unit1.html'); return false;">
 
                     Start Unit 1
 
@@ -373,8 +356,6 @@
             </div>
 
 
-
-            <!-- UNIT 2 -->
 
             <div
                 class="unit-card">
@@ -405,8 +386,9 @@
 
 
                 <a
-                    href="units/unit2.html"
-                    class="unit-button">
+                    href="#"
+                    class="unit-button"
+                    onclick="startCourse('units/unit2.html'); return false;">
 
                     Start Unit 2
 
@@ -416,8 +398,6 @@
             </div>
 
 
-
-            <!-- UNIT 3 -->
 
             <div
                 class="unit-card">
@@ -449,8 +429,9 @@
 
 
                 <a
-                    href="units/unit3.html"
-                    class="unit-button">
+                    href="#"
+                    class="unit-button"
+                    onclick="startCourse('units/unit3.html'); return false;">
 
                     Start Unit 3
 
@@ -460,8 +441,6 @@
             </div>
 
 
-
-            <!-- UNIT 4 -->
 
             <div
                 class="unit-card">
@@ -492,8 +471,9 @@
 
 
                 <a
-                    href="units/unit4.html"
-                    class="unit-button">
+                    href="#"
+                    class="unit-button"
+                    onclick="startCourse('units/unit4.html'); return false;">
 
                     Start Unit 4
 
@@ -503,8 +483,6 @@
             </div>
 
 
-
-            <!-- UNIT 5 -->
 
             <div
                 class="unit-card">
@@ -528,16 +506,17 @@
                 <p>
 
                     Bias, toxicity, misinformation,
-                    adversarial prompting, jailbreaks,
-                    safety, evaluation, function calling,
+                    adversarial prompting, safety,
+                    evaluation, function calling,
                     tool use, and RAG.
 
                 </p>
 
 
                 <a
-                    href="units/unit5.html"
-                    class="unit-button">
+                    href="#"
+                    class="unit-button"
+                    onclick="startCourse('units/unit5.html'); return false;">
 
                     Start Unit 5
 
@@ -553,10 +532,6 @@
     </section>
 
 
-
-    <!-- =========================
-         LEARNING JOURNEY
-    ========================== -->
 
     <section
         class="section">
@@ -584,9 +559,8 @@
 
                 Start with the fundamentals of Large Language
                 Models, learn how to design effective prompts,
-                explore advanced techniques, and finally
-                apply Prompt Engineering to real-world
-                domain-specific tasks.
+                explore advanced techniques, and apply Prompt
+                Engineering to real-world tasks.
 
             </p>
 
@@ -597,10 +571,6 @@
     </section>
 
 
-
-    <!-- =========================
-         CONTACT
-    ========================== -->
 
     <section
         class="section"
@@ -627,9 +597,7 @@
 
             <p>
 
-                Explore the course units, study the learning
-                material, attempt the quizzes, and track
-                your learning progress.
+                Enter your email and start learning.
 
             </p>
 
@@ -638,8 +606,9 @@
 
 
             <a
-                href="units/unit1.html"
-                class="primary-button">
+                href="#"
+                class="primary-button"
+                onclick="startCourse('units/unit1.html'); return false;">
 
                 Start Learning
 
@@ -653,10 +622,6 @@
 
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
     <footer>
 
 
@@ -669,14 +634,91 @@
 
         <p>
 
-            Designed for Learning, Research,
-            and Intelligent AI Applications
+            Designed for Learning,
+            Research, and Intelligent AI Applications
 
         </p>
 
 
     </footer>
 
+
+
+    <!-- REGISTRATION MODAL -->
+
+    <div
+        id="registrationModal"
+        class="registration-modal">
+
+
+        <div
+            class="registration-box">
+
+
+            <button
+                class="close-modal"
+                onclick="closeRegistration()">
+
+                ×
+
+            </button>
+
+
+            <h2>
+
+                Start Your Course
+
+            </h2>
+
+
+            <p>
+
+                Enter your email address before
+                starting the course.
+
+            </p>
+
+
+            <form
+                id="registrationForm">
+
+
+                <input
+                    type="email"
+                    id="studentEmail"
+                    placeholder="Enter your email address"
+                    required>
+
+
+                <button
+                    type="submit"
+                    class="primary-button">
+
+                    Start Learning
+
+                </button>
+
+
+            </form>
+
+
+            <p
+                id="registrationMessage">
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <script
+        src="script.js">
+
+    </script>
 
 
 </body>
