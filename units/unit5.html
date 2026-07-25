@@ -8,7 +8,9 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Unit 5 | Prompt Safety, Bias, and Ethics</title>
+    <title>
+        Unit 5 | Prompt Engineering
+    </title>
 
     <link rel="stylesheet"
         href="../style.css">
@@ -52,9 +54,9 @@
 
             <p>
 
-                Understand the risks, evaluation methods,
-                and responsible practices associated
-                with Prompt Engineering.
+                Understand the ethical, social,
+                and safety challenges associated
+                with Large Language Models and Prompt Engineering.
 
             </p>
 
@@ -73,27 +75,29 @@
                 <ul>
 
                     <li>
-                        Identify bias and toxicity in model outputs.
+                        Understand bias and toxicity in AI outputs.
                     </li>
 
                     <li>
-                        Explain misinformation risks.
+                        Identify misinformation risks.
                     </li>
 
                     <li>
-                        Understand adversarial prompting.
+                        Understand adversarial prompting
+                        and jailbreak attempts.
                     </li>
 
                     <li>
-                        Apply safety practices.
+                        Apply safety best practices.
                     </li>
 
                     <li>
-                        Understand modern evaluation frameworks.
+                        Understand evaluation frameworks.
                     </li>
 
                     <li>
-                        Explain RAG, tool use, and function calling.
+                        Explain RAG, tool use,
+                        and future directions.
 
                     </li>
 
@@ -108,64 +112,106 @@
                     Course Topics
                 </h2>
 
+
                 <h3>
-                    1. Bias, Toxicity, and Misinformation
+                    1. Bias in Model Outputs
                 </h3>
 
                 <p>
 
-                    AI systems may generate biased,
-                    toxic, inaccurate, or misleading outputs.
+                    AI systems can reproduce biases present
+                    in training data and may generate
+                    unfair or stereotypical outputs.
 
                 </p>
 
 
                 <h3>
-                    2. Adversarial Prompting and Jailbreaks
+                    2. Toxicity and Misinformation
+                </h3>
+
+                <p>
+
+                    Language models may produce harmful,
+                    offensive, misleading, or factually
+                    incorrect information.
+
+                </p>
+
+
+                <h3>
+                    3. Adversarial Prompting and Jailbreaks
                 </h3>
 
                 <p>
 
                     Adversarial prompts attempt to manipulate
-                    models into violating intended restrictions.
+                    a model into ignoring its intended
+                    instructions or safety restrictions.
 
                 </p>
 
 
                 <h3>
-                    3. Safety Best Practices
+                    4. Safety Best Practices
                 </h3>
 
                 <p>
 
-                    Good prompt design should include
-                    clear constraints, validation,
-                    verification, and responsible use.
+                    Safe Prompt Engineering includes
+                    clear instructions, appropriate constraints,
+                    validation, monitoring, and human oversight.
 
                 </p>
 
 
                 <h3>
-                    4. Evaluation Frameworks
+                    5. Evaluation Frameworks
                 </h3>
 
                 <p>
 
-                    Evaluation may include BLEU,
+                    Outputs can be evaluated using BLEU,
                     ROUGE, BERTScore, and human evaluation.
 
                 </p>
 
 
                 <h3>
-                    5. Future Directions
+                    6. Function Calling and Tool Use
                 </h3>
 
                 <p>
 
-                    Important developments include
-                    function calling, tool use, and
-                    Retrieval-Augmented Generation (RAG).
+                    Modern AI systems can interact with external
+                    tools and applications to perform specialized tasks.
+
+                </p>
+
+
+                <h3>
+                    7. Retrieval-Augmented Generation
+
+                </h3>
+
+                <p>
+
+                    RAG combines information retrieval
+                    with generation to provide responses
+                    grounded in external knowledge sources.
+
+                </p>
+
+
+                <h3>
+                    8. Future Directions
+                </h3>
+
+                <p>
+
+                    The future of Prompt Engineering includes
+                    tool use, agentic systems, multimodal AI,
+                    and retrieval-augmented systems.
 
                 </p>
 
@@ -179,13 +225,9 @@
                 </h2>
 
                 <p>
-                    Add your Unit 5 material to:
-                </p>
 
-                <p>
-                    <b>
-                        materials/unit5/
-                    </b>
+                    Access the Unit 5 learning material below.
+
                 </p>
 
                 <a href="../materials/unit5/unit5.pdf"
@@ -205,6 +247,13 @@
                     Unit 5 Assessment
                 </h2>
 
+                <p>
+
+                    Complete the interactive quiz
+                    after studying this unit.
+
+                </p>
+
                 <a href="../quizzes/quiz5.html"
                     class="primary-button">
 
@@ -213,6 +262,35 @@
                 </a>
 
             </div>
+
+
+            <div class="lesson-card">
+
+                <h2>
+                    Unit Progress
+                </h2>
+
+                <p>
+
+                    After completing the unit material,
+                    mark this unit as completed.
+
+                </p>
+
+                <button
+                    class="primary-button"
+                    onclick="completeUnit(5)">
+
+                    Mark Unit 5 as Completed
+
+                </button>
+
+                <p id="unitProgress">
+
+                </p>
+
+            </div>
+
 
         </div>
 
@@ -226,6 +304,9 @@
         </p>
 
     </footer>
+
+
+    <script src="../script.js"></script>
 
 </body>
 
