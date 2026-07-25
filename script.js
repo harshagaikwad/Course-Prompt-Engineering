@@ -1,8 +1,11 @@
+```javascript
 // ==========================================
 // GOOGLE APPS SCRIPT WEB APP URL
 // ==========================================
 
-const GOOGLE_SCRIPT_URL ="https://script.google.com/macros/s/AKfycbz476e53gAfbDCDPRzi68iIl6CdlM_9GV6_SrwY7fHCRdMNlNS23jrVaSpGBXh84Iah/exec";
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbz476e53gAfbDCDPRzi68iIl6CdlM_9GV6_SrwY7fHCRdMNlNS23jrVaSpGBXh84Iah/exec";
+
 
 // ==========================================
 // GLOBAL VARIABLES
@@ -24,8 +27,7 @@ function isStudentRegistered() {
 
 
     return (
-        email !== null
-        &&
+        email !== null &&
         email.trim() !== ""
     );
 
@@ -55,8 +57,7 @@ function startCourse(page) {
 
 
     const modal =
-        document
-        .getElementById(
+        document.getElementById(
             "registrationModal"
         );
 
@@ -78,8 +79,7 @@ function startCourse(page) {
 function closeRegistration() {
 
     const modal =
-        document
-        .getElementById(
+        document.getElementById(
             "registrationModal"
         );
 
@@ -103,16 +103,18 @@ function registerStudent(
     page
 ) {
 
-
     const message =
-        document
-        .getElementById(
+        document.getElementById(
             "registrationMessage"
         );
 
 
-    message.innerText =
-        "Registering your email...";
+    if (message) {
+
+        message.innerText =
+            "Registering your email...";
+
+    }
 
 
     const formData =
@@ -131,11 +133,11 @@ function registerStudent(
 
         {
 
-            method:
-                "POST",
+            method: "POST",
 
-            body:
-                formData
+            mode: "no-cors",
+
+            body: formData
 
         }
 
@@ -143,27 +145,20 @@ function registerStudent(
 
     .then(
 
-        response =>
-            response.text()
-
-    )
-
-    .then(
-
-        result => {
-
+        function () {
 
             localStorage.setItem(
-
                 "studentEmail",
-
                 email
-
             );
 
 
-            message.innerText =
-                "Registration successful";
+            if (message) {
+
+                message.innerText =
+                    "Registration successful";
+
+            }
 
 
             setTimeout(
@@ -187,14 +182,18 @@ function registerStudent(
 
         function (error) {
 
-
             console.error(
+                "Registration error:",
                 error
             );
 
 
-            message.innerText =
-                "Registration failed. Please try again.";
+            if (message) {
+
+                message.innerText =
+                    "Registration failed. Please try again.";
+
+            }
 
         }
 
@@ -213,10 +212,8 @@ document.addEventListener(
 
     function () {
 
-
         const form =
-            document
-            .getElementById(
+            document.getElementById(
                 "registrationForm"
             );
 
@@ -234,17 +231,17 @@ document.addEventListener(
 
             function (event) {
 
-
                 event.preventDefault();
 
 
-                const email =
-                    document
-                    .getElementById(
+                const emailInput =
+                    document.getElementById(
                         "studentEmail"
-                    )
-                    .value
-                    .trim();
+                    );
+
+
+                const email =
+                    emailInput.value.trim();
 
 
                 if (
@@ -285,7 +282,6 @@ function completeUnit(
     unitNumber
 ) {
 
-
     const email =
         localStorage.getItem(
             "studentEmail"
@@ -295,7 +291,6 @@ function completeUnit(
     if (
         !email
     ) {
-
 
         alert(
             "Please register your email before continuing."
@@ -339,11 +334,11 @@ function completeUnit(
 
         {
 
-            method:
-                "POST",
+            method: "POST",
 
-            body:
-                formData
+            mode: "no-cors",
+
+            body: formData
 
         }
 
@@ -351,19 +346,10 @@ function completeUnit(
 
     .then(
 
-        response =>
-            response.text()
-
-    )
-
-    .then(
-
-        result => {
-
+        function () {
 
             const progress =
-                document
-                .getElementById(
+                document.getElementById(
                     "unitProgress"
                 );
 
@@ -383,13 +369,14 @@ function completeUnit(
 
 
             alert(
+
                 "Unit "
                 +
                 unitNumber
                 +
                 " marked as completed."
-            );
 
+            );
 
         }
 
@@ -399,8 +386,8 @@ function completeUnit(
 
         function (error) {
 
-
             console.error(
+                "Progress update error:",
                 error
             );
 
@@ -414,3 +401,4 @@ function completeUnit(
     );
 
 }
+```
