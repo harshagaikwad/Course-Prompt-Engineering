@@ -40,9 +40,6 @@ function startCourse(page) {
         page;
 
 
-    // If email is already registered,
-    // directly open the selected unit
-
     if (isStudentRegistered()) {
 
         window.location.href =
@@ -52,8 +49,6 @@ function startCourse(page) {
 
     }
 
-
-    // Otherwise show registration form
 
     const modal =
         document.getElementById(
@@ -102,15 +97,18 @@ function registerStudent(
     page
 ) {
 
-
     const message =
         document.getElementById(
             "registrationMessage"
         );
 
 
-    message.innerText =
-        "Registering your email...";
+    if (message) {
+
+        message.innerText =
+            "Registering your email...";
+
+    }
 
 
     const formData =
@@ -139,7 +137,8 @@ function registerStudent(
 
     .then(
 
-        response => response.text()
+        response =>
+            response.text()
 
     )
 
@@ -147,14 +146,11 @@ function registerStudent(
 
         result => {
 
-
             console.log(
                 "Google Apps Script Response:",
                 result
             );
 
-
-            // SAVE EMAIL LOCALLY
 
             localStorage.setItem(
                 "studentEmail",
@@ -162,11 +158,13 @@ function registerStudent(
             );
 
 
-            message.innerText =
-                "Registration successful";
+            if (message) {
 
+                message.innerText =
+                    "Registration successful";
 
-            // OPEN SELECTED COURSE PAGE
+            }
+
 
             setTimeout(
 
@@ -189,15 +187,18 @@ function registerStudent(
 
         function (error) {
 
-
             console.error(
                 "Registration Error:",
                 error
             );
 
 
-            message.innerText =
-                "Registration failed. Please try again.";
+            if (message) {
+
+                message.innerText =
+                    "Registration failed. Please try again.";
+
+            }
 
         }
 
@@ -215,7 +216,6 @@ document.addEventListener(
     "DOMContentLoaded",
 
     function () {
-
 
         const form =
             document.getElementById(
@@ -235,7 +235,6 @@ document.addEventListener(
             "submit",
 
             function (event) {
-
 
                 event.preventDefault();
 
@@ -284,17 +283,13 @@ function completeUnit(
     unitNumber
 ) {
 
-
     const email =
         localStorage.getItem(
             "studentEmail"
         );
 
 
-    if (
-        !email
-    ) {
-
+    if (!email) {
 
         alert(
             "Please register your email first."
@@ -348,14 +343,14 @@ function completeUnit(
 
     .then(
 
-        response => response.text()
+        response =>
+            response.text()
 
     )
 
     .then(
 
         result => {
-
 
             alert(
                 "Unit "
@@ -365,8 +360,6 @@ function completeUnit(
                 " completed successfully."
             );
 
-
-            // REDIRECT TO HOME PAGE
 
             window.location.href =
                 "../index.html";
@@ -378,7 +371,6 @@ function completeUnit(
     .catch(
 
         function (error) {
-
 
             console.error(
                 "Progress Error:",
