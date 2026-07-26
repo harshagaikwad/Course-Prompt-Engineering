@@ -63,6 +63,9 @@ body {
     color: #475569;
     font-weight: 600;
     transition: 0.3s;
+
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .nav-links a:hover {
@@ -94,10 +97,15 @@ body {
             #eef2ff,
             #ffffff
         );
+
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
     max-width: 720px;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-tag {
@@ -144,6 +152,40 @@ body {
 
 
 /* =========================================
+   GET STARTED SECTION
+========================================= */
+
+.hero-start {
+    position: relative;
+    z-index: 10;
+
+    margin-top: 30px;
+}
+
+.hero-start span {
+    color: #4f46e5;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.hero-start h2 {
+    margin: 10px 0;
+
+    font-size: 30px;
+
+    color: #111827;
+}
+
+.hero-start p {
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
    BUTTONS
 ========================================= */
 
@@ -161,6 +203,8 @@ body {
 
     cursor: pointer;
 
+    pointer-events: auto;
+
     font-size: 15px;
 
     font-weight: 700;
@@ -170,6 +214,10 @@ body {
     background: #4f46e5;
 
     transition: 0.3s;
+
+    position: relative;
+
+    z-index: 9999;
 }
 
 .primary-button:hover,
@@ -197,6 +245,14 @@ body {
     border: 2px solid #4f46e5;
 
     transition: 0.3s;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    position: relative;
+
+    z-index: 9999;
 }
 
 .secondary-button:hover {
@@ -214,6 +270,10 @@ body {
     max-width: 1400px;
 
     margin: auto;
+
+    position: relative;
+
+    z-index: 1;
 }
 
 .section-heading {
@@ -340,6 +400,8 @@ body {
     height: 100%;
 
     background: #4f46e5;
+
+    pointer-events: none;
 }
 
 .unit-card:hover {
@@ -480,15 +542,27 @@ body {
 }
 
 @keyframes modalAppear {
+
     from {
+
         opacity: 0;
-        transform: translateY(-20px) scale(0.95);
+
+        transform:
+            translateY(-20px)
+            scale(0.95);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
+
     }
+
 }
 
 .registration-box h2 {
@@ -548,6 +622,10 @@ body {
     color: #64748b;
 
     cursor: pointer;
+
+    pointer-events: auto;
+
+    z-index: 9999;
 }
 
 .close-modal:hover {
@@ -693,6 +771,14 @@ body {
     font-weight: 700;
 
     transition: 0.3s;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    position: relative;
+
+    z-index: 9999;
 }
 
 .material-button:hover {
@@ -716,6 +802,10 @@ footer {
     color: #cbd5e1;
 
     margin-top: 60px;
+
+    position: relative;
+
+    z-index: 1;
 }
 
 footer p {
@@ -730,69 +820,112 @@ footer p {
 @media (max-width: 900px) {
 
     .stats {
+
         grid-template-columns:
             repeat(2, 1fr);
+
     }
 
     .units-grid {
+
         grid-template-columns:
             1fr;
+
     }
+
 }
 
 
 @media (max-width: 600px) {
 
     .navbar {
-        padding: 16px 5%;
+
+        padding:
+            16px 5%;
+
     }
 
     .logo {
-        font-size: 18px;
+
+        font-size:
+            18px;
+
     }
 
     .nav-links {
-        gap: 12px;
+
+        gap:
+            12px;
+
     }
 
     .nav-links a {
-        font-size: 14px;
+
+        font-size:
+            14px;
+
     }
 
     .hero {
-        padding: 70px 5%;
+
+        padding:
+            70px 5%;
+
     }
 
     .section {
-        padding: 60px 5%;
+
+        padding:
+            60px 5%;
+
     }
 
     .stats {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
 
         padding:
             0 5% 60px;
+
     }
 
     .hero h1 {
-        font-size: 44px;
+
+        font-size:
+            44px;
+
     }
 
     .hero p {
-        font-size: 17px;
+
+        font-size:
+            17px;
+
     }
 
     .secondary-button {
-        margin-left: 0;
 
-        margin-top: 12px;
+        margin-left:
+            0;
+
+        margin-top:
+            12px;
+
     }
 
     .registration-box {
-        padding: 30px 22px;
+
+        padding:
+            30px 22px;
+
     }
 
     .lesson-card {
-        padding: 24px;
+
+        padding:
+            24px;
+
     }
+
 }
