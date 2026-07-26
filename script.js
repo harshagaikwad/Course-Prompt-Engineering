@@ -1,4 +1,3 @@
-
 // ==========================================
 // GOOGLE APPS SCRIPT WEB APP URL
 // ==========================================
@@ -8,26 +7,23 @@ const GOOGLE_SCRIPT_URL =
 
 
 // ==========================================
-// GLOBAL VARIABLES
+// GLOBAL VARIABLE
 // ==========================================
 
 let selectedCoursePage = "";
 
 
 // ==========================================
-// CHECK WHETHER STUDENT IS REGISTERED
+// CHECK STUDENT REGISTRATION
 // ==========================================
 
 function isStudentRegistered() {
 
     const email =
-        localStorage.getItem(
-            "studentEmail"
-        );
-
+        localStorage.getItem("studentEmail");
 
     return (
-        email !== null &&
+        email &&
         email.trim() !== ""
     );
 
@@ -35,7 +31,7 @@ function isStudentRegistered() {
 
 
 // ==========================================
-// OPEN REGISTRATION MODAL
+// START COURSE
 // ==========================================
 
 function startCourse(page) {
@@ -44,9 +40,10 @@ function startCourse(page) {
         page;
 
 
-    if (
-        isStudentRegistered()
-    ) {
+    // If email is already registered,
+    // directly open the selected unit
+
+    if (isStudentRegistered()) {
 
         window.location.href =
             page;
@@ -55,6 +52,8 @@ function startCourse(page) {
 
     }
 
+
+    // Otherwise show registration form
 
     const modal =
         document.getElementById(
@@ -103,18 +102,15 @@ function registerStudent(
     page
 ) {
 
+
     const message =
         document.getElementById(
             "registrationMessage"
         );
 
 
-    if (message) {
-
-        message.innerText =
-            "Registering your email...";
-
-    }
+    message.innerText =
+        "Registering your email...";
 
 
     const formData =
@@ -135,8 +131,6 @@ function registerStudent(
 
             method: "POST",
 
-            mode: "no-cors",
-
             body: formData
 
         }
@@ -145,7 +139,22 @@ function registerStudent(
 
     .then(
 
-        function () {
+        response => response.text()
+
+    )
+
+    .then(
+
+        result => {
+
+
+            console.log(
+                "Google Apps Script Response:",
+                result
+            );
+
+
+            // SAVE EMAIL LOCALLY
 
             localStorage.setItem(
                 "studentEmail",
@@ -153,13 +162,11 @@ function registerStudent(
             );
 
 
-            if (message) {
+            message.innerText =
+                "Registration successful";
 
-                message.innerText =
-                    "Registration successful";
 
-            }
-
+            // OPEN SELECTED COURSE PAGE
 
             setTimeout(
 
@@ -182,18 +189,15 @@ function registerStudent(
 
         function (error) {
 
+
             console.error(
-                "Registration error:",
+                "Registration Error:",
                 error
             );
 
 
-            if (message) {
-
-                message.innerText =
-                    "Registration failed. Please try again.";
-
-            }
+            message.innerText =
+                "Registration failed. Please try again.";
 
         }
 
@@ -211,6 +215,7 @@ document.addEventListener(
     "DOMContentLoaded",
 
     function () {
+
 
         const form =
             document.getElementById(
@@ -230,6 +235,7 @@ document.addEventListener(
             "submit",
 
             function (event) {
+
 
                 event.preventDefault();
 
@@ -253,15 +259,11 @@ document.addEventListener(
                 }
 
 
-                const page =
-                    selectedCoursePage;
-
-
                 registerStudent(
 
                     email,
 
-                    page
+                    selectedCoursePage
 
                 );
 
@@ -282,6 +284,7 @@ function completeUnit(
     unitNumber
 ) {
 
+
     const email =
         localStorage.getItem(
             "studentEmail"
@@ -292,8 +295,9 @@ function completeUnit(
         !email
     ) {
 
+
         alert(
-            "Please register your email before continuing."
+            "Please register your email first."
         );
 
 
@@ -336,8 +340,6 @@ function completeUnit(
 
             method: "POST",
 
-            mode: "no-cors",
-
             body: formData
 
         }
@@ -346,37 +348,28 @@ function completeUnit(
 
     .then(
 
-        function () {
+        response => response.text()
 
-            const progress =
-                document.getElementById(
-                    "unitProgress"
-                );
+    )
 
+    .then(
 
-            if (
-                progress
-            ) {
-
-                progress.innerText =
-                    "✓ Unit "
-                    +
-                    unitNumber
-                    +
-                    " completed successfully.";
-
-            }
+        result => {
 
 
             alert(
-
                 "Unit "
                 +
                 unitNumber
                 +
-                " marked as completed."
-
+                " completed successfully."
             );
+
+
+            // REDIRECT TO HOME PAGE
+
+            window.location.href =
+                "../index.html";
 
         }
 
@@ -386,8 +379,9 @@ function completeUnit(
 
         function (error) {
 
+
             console.error(
-                "Progress update error:",
+                "Progress Error:",
                 error
             );
 
@@ -401,4 +395,3 @@ function completeUnit(
     );
 
 }
-```
