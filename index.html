@@ -428,12 +428,14 @@
 
                 <br>
 
+
                 <a
                     href="mailto:harsha.gaikwad@dbatu.ac.in">
 
                     harsha.gaikwad@dbatu.ac.in
 
                 </a>
+
 
             </p>
 
@@ -686,8 +688,10 @@
             function (event) {
 
                 if (
+
                     event.target ===
                     registrationModal
+
                 ) {
 
                     closeRegistration();
@@ -741,6 +745,8 @@
 
                         method: "POST",
 
+                        mode: "no-cors",
+
                         body: formData
 
                     }
@@ -749,17 +755,7 @@
 
                 .then(
 
-                    function (response) {
-
-                        return response.text();
-
-                    }
-
-                )
-
-                .then(
-
-                    function (result) {
+                    function () {
 
                         localStorage.setItem(
                             "studentEmail",
@@ -780,7 +776,7 @@
 
                             },
 
-                            500
+                            800
 
                         );
 
