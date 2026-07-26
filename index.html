@@ -15,11 +15,6 @@
     <link rel="stylesheet"
         href="style.css">
 
-    <script
-        src="script.js"
-        defer>
-    </script>
-
 </head>
 
 
@@ -27,7 +22,6 @@
 
 
     <nav class="navbar">
-
 
         <div class="logo">
 
@@ -37,7 +31,6 @@
 
 
         <div class="nav-links">
-
 
             <a href="#home">
 
@@ -59,9 +52,7 @@
 
             </a>
 
-
         </div>
-
 
     </nav>
 
@@ -132,7 +123,7 @@
                 <button
                     type="button"
                     class="primary-button"
-                    onclick="startCourse('units/unit1.html')">
+                    id="startLearningButton">
 
                     Start Learning
 
@@ -221,7 +212,7 @@
                 <button
                     type="button"
                     class="unit-button"
-                    onclick="startCourse('units/unit1.html')">
+                    data-page="units/unit1.html">
 
                     Start Unit 1
 
@@ -263,7 +254,7 @@
                 <button
                     type="button"
                     class="unit-button"
-                    onclick="startCourse('units/unit2.html')">
+                    data-page="units/unit2.html">
 
                     Start Unit 2
 
@@ -306,7 +297,7 @@
                 <button
                     type="button"
                     class="unit-button"
-                    onclick="startCourse('units/unit3.html')">
+                    data-page="units/unit3.html">
 
                     Start Unit 3
 
@@ -348,7 +339,7 @@
                 <button
                     type="button"
                     class="unit-button"
-                    onclick="startCourse('units/unit4.html')">
+                    data-page="units/unit4.html">
 
                     Start Unit 4
 
@@ -391,7 +382,7 @@
                 <button
                     type="button"
                     class="unit-button"
-                    onclick="startCourse('units/unit5.html')">
+                    data-page="units/unit5.html">
 
                     Start Unit 5
 
@@ -437,14 +428,12 @@
 
                 <br>
 
-
                 <a
                     href="mailto:harsha.gaikwad@dbatu.ac.in">
 
                     harsha.gaikwad@dbatu.ac.in
 
                 </a>
-
 
             </p>
 
@@ -499,7 +488,7 @@
             <button
                 type="button"
                 class="close-modal"
-                onclick="closeRegistration()">
+                id="closeModalButton">
 
                 ×
 
@@ -554,6 +543,272 @@
 
 
     </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const GOOGLE_SCRIPT_URL =
+            "https://script.google.com/macros/s/AKfycbz476e53gAfbDCDPRzi68iIl6CdlM_9GV6_SrwY7fHCRdMNlNS23jrVaSpGBXh84Iah/exec";
+
+
+        let selectedCoursePage = "";
+
+
+        const registrationModal =
+            document.getElementById(
+                "registrationModal"
+            );
+
+
+        const registrationForm =
+            document.getElementById(
+                "registrationForm"
+            );
+
+
+        const studentEmail =
+            document.getElementById(
+                "studentEmail"
+            );
+
+
+        const registrationMessage =
+            document.getElementById(
+                "registrationMessage"
+            );
+
+
+        const closeModalButton =
+            document.getElementById(
+                "closeModalButton"
+            );
+
+
+        const startLearningButton =
+            document.getElementById(
+                "startLearningButton"
+            );
+
+
+        function openRegistration(page) {
+
+            selectedCoursePage =
+                page;
+
+
+            registrationModal.style.display =
+                "flex";
+
+
+            studentEmail.focus();
+
+        }
+
+
+        function closeRegistration() {
+
+            registrationModal.style.display =
+                "none";
+
+        }
+
+
+        startLearningButton.addEventListener(
+
+            "click",
+
+            function () {
+
+                openRegistration(
+                    "units/unit1.html"
+                );
+
+            }
+
+        );
+
+
+        const unitButtons =
+            document.querySelectorAll(
+                ".unit-button"
+            );
+
+
+        unitButtons.forEach(
+
+            function (button) {
+
+                button.addEventListener(
+
+                    "click",
+
+                    function () {
+
+                        const page =
+                            button.getAttribute(
+                                "data-page"
+                            );
+
+
+                        openRegistration(
+                            page
+                        );
+
+                    }
+
+                );
+
+            }
+
+        );
+
+
+        closeModalButton.addEventListener(
+
+            "click",
+
+            function () {
+
+                closeRegistration();
+
+            }
+
+        );
+
+
+        registrationModal.addEventListener(
+
+            "click",
+
+            function (event) {
+
+                if (
+                    event.target ===
+                    registrationModal
+                ) {
+
+                    closeRegistration();
+
+                }
+
+            }
+
+        );
+
+
+        registrationForm.addEventListener(
+
+            "submit",
+
+            function (event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    studentEmail.value.trim();
+
+
+                if (!email) {
+
+                    return;
+
+                }
+
+
+                registrationMessage.innerText =
+                    "Registering your email...";
+
+
+                const formData =
+                    new URLSearchParams();
+
+
+                formData.append(
+                    "email",
+                    email
+                );
+
+
+                fetch(
+
+                    GOOGLE_SCRIPT_URL,
+
+                    {
+
+                        method: "POST",
+
+                        body: formData
+
+                    }
+
+                )
+
+                .then(
+
+                    function (response) {
+
+                        return response.text();
+
+                    }
+
+                )
+
+                .then(
+
+                    function (result) {
+
+                        localStorage.setItem(
+                            "studentEmail",
+                            email
+                        );
+
+
+                        registrationMessage.innerText =
+                            "Registration successful";
+
+
+                        setTimeout(
+
+                            function () {
+
+                                window.location.href =
+                                    selectedCoursePage;
+
+                            },
+
+                            500
+
+                        );
+
+                    }
+
+                )
+
+                .catch(
+
+                    function (error) {
+
+                        console.error(
+                            error
+                        );
+
+
+                        registrationMessage.innerText =
+                            "Registration failed. Please try again.";
+
+                    }
+
+                );
+
+            }
+
+        );
+
+    </script>
 
 
 </body>
